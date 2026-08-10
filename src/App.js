@@ -1,22 +1,33 @@
-import logo from "./logo.svg";
 import "./App.scss";
+import Nav from "./components/navigation/Nav";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello world React with Hoi Dan IT</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        {/* <Nav /> */}
+        <Switch>
+          <Route path="/news">news</Route>
+          <Route path="/about">about</Route>
+          <Route path="/contact">contact</Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/" exact>
+            home
+          </Route>
+
+          <Route path="*">not found 404</Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
