@@ -1,0 +1,29 @@
+.role-container {
+  
+  .actions {
+    margin-top: 37px;
+    .icon {
+      cursor: pointer;
+    }
+    .add-icon {
+      margin-right: 5px;
+      color: green;
+    }
+
+    .delete-icon {
+         color: rgba(255, 0, 0, 0.578);
+
+    }
+  }
+}
+
+.table-role-container {
+  .delete-btn {
+    color: red;
+    border:  none;
+    background-color: transparent;
+  }
+
+}
+
+

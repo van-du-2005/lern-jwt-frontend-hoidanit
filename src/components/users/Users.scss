@@ -1,0 +1,22 @@
+.users-container {
+  i {
+    padding-right: 4px;
+  }
+
+  .refresh-btn {
+    margin-right: 10px;
+  }
+}
+
+.user-body {
+  .actions-btn {
+    border: none;
+    background: none;
+  }
+  .edit-btn {
+    color: orange;
+  }
+  .delete-btn {
+    color: rgb(216, 42, 42);
+  }
+}

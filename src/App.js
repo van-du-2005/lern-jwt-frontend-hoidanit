@@ -1,32 +1,50 @@
 import "./App.scss";
-import Nav from "./components/navigation/Nav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import Login from "./components/login/Login";
-import Register from "./components/register/Register";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { Rings } from "react-loader-spinner";
+
+import AppRoutes from "./routes/AppRoutes";
+import NavHeader from "./components/navigation/NavHeader";
+import { useAuth } from "../src/context/AuthContext";
 
 function App() {
+  const userContext = useAuth().user;
+
   return (
     <Router>
-      <div className="app-container">
-        {/* <Nav /> */}
-        <Switch>
-          <Route path="/news">news</Route>
-          <Route path="/about">about</Route>
-          <Route path="/contact">contact</Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/" exact>
-            home
-          </Route>
+      {userContext && userContext.loading ? (
+        <div className="app-loading-container">
+          <Rings heigth="100" width="100" color="#1877f2" ariaLabel="loading" />
+          <div>loading data....</div>
+        </div>
+      ) : (
+        <>
+          <div className="app-nav">
+            <NavHeader />
+          </div>
+          <div className="app-container">
+            <AppRoutes />
+          </div>{" "}
+        </>
+      )}
 
-          <Route path="*">not found 404</Route>
-        </Switch>
-      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+        className="toast-container"
+      />
     </Router>
   );
 }
